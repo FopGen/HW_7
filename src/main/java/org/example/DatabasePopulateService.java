@@ -1,37 +1,32 @@
 package org.example;
 
-import org.example.util.ProcessindData;
+import org.example.dao.ClientDao;
+import org.example.dao.ProjectDao;
+import org.example.dao.ProjectWorkerDao;
+import org.example.dao.WorkerDao;
+import org.example.model.ProjectModel;
+import org.example.model.WorkerModel;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 public class DatabasePopulateService {
     public static void main(String[] args) throws SQLException{
 
- //       Connection connection = Database.getConnection();
+        HashMap<Integer, String> listOfClient = DataSource.getMapOfClient();
+        ClientDao.insertClientPreparedStatement(listOfClient);
 
-        HashMap<Integer, String> listOfClient = DataSource.getListOfClient();
-        String queryForClient = "INSERT INTO client (id, name) VALUES (?,?)";
+        List <WorkerModel> listOfWorker = DataSource.getlistOfWorker();
+        WorkerDao.insertWorkerPreparedStatement(listOfWorker);
 
-        ProcessindData.processingListOfClient(listOfClient, queryForClient);
+        List <ProjectModel> listOfProjects = DataSource.getListOfProjects();
+        ProjectDao.insertProjectPreparedStatement(listOfProjects);
 
+        HashMap<Integer, Integer> mapOfProjectsWorker = DataSource.getMapOfProjectsWorker();
+        ProjectWorkerDao.insertProjectWorkerPreparedStatement(mapOfProjectsWorker);
 
-        List <String> listOfWorker = DataSource.getlistOfWorker();
-        String queryForWorker = "INSERT INTO worker (id, name, birthday, level, salary) VALUES (?,?, ?, ?::competence,?)";
-
-        ProcessindData.processingListOfWorker(listOfWorker, queryForWorker);
-
-
-        List <String> listOfProjects = DataSource.getListOfProjects();
-        String queryForProject = "INSERT INTO project (id, client_id, start_date, finish_date) VALUES (?, ?, ?, ?)";
-
-        ProcessindData.processingListOfProject(listOfProjects, queryForProject);
-
-
-        List <String> listOfProjectsWorker = DataSource.getListOfProjectsWorker();
-        String queryForProjectWorker = "INSERT INTO project_worker (project_id, worker_id) VALUES (?, ?)";
-
-        ProcessindData.processingListOfProjectWorker(listOfProjectsWorker, queryForProjectWorker);
+        Database.getConnection().close();
     }
 }
 

@@ -1,70 +1,74 @@
 package org.example;
 
+import org.example.model.ProjectModel;
+import org.example.model.WorkerModel;
+
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class DataSource {
 
-    public static HashMap<Integer, String> getListOfClient(){
-        HashMap<Integer, String> listOfClient = new HashMap<>();
-            listOfClient.put(1, "Mr.Max");
-            listOfClient.put(2,"Mr.Ted");
-            listOfClient.put(3,"Mrs. Maria");
-            listOfClient.put(4,"Mr.Ben");
-            listOfClient.put(5,"Mrs.Linda");
-        return listOfClient;
+    public static HashMap<Integer, String> getMapOfClient(){
+        HashMap<Integer, String> mapOfClient = new HashMap<>();
+            mapOfClient.put(1,"Mr.Max");
+            mapOfClient.put(2,"Mr.Ted");
+            mapOfClient.put(3,"Mrs.Maria");
+            mapOfClient.put(4,"Mr.Ben");
+            mapOfClient.put(5,"Mrs.Linda");
+        return mapOfClient;
     }
 
-    public static List <String> getlistOfWorker(){
-        List <String> listOfWorker = new ArrayList<>();
-        listOfWorker.add("1,First,1991.01.01,Trainee,300");
-        listOfWorker.add("2,Second,1992.02.02,Junior,1000");
-        listOfWorker.add("3,Third,1993.03.03,Junior,1500");
-        listOfWorker.add("4,Four,1994.04.04,Junior,1800");
-        listOfWorker.add("5,Five,1995.05.05,Middle,2000");
-        listOfWorker.add("6,Six,1996.06.06,Middle,2500");
-        listOfWorker.add("7,Seven,1997.07.07,Senior,4000");
-        listOfWorker.add("8,Eight,1998.08.08,Senior,4500");
-        listOfWorker.add("9,Nine,1999.09.09,Senior,5000");
-        listOfWorker.add("10,Ten,2000.10.10,Senior,5500");
+    public static List <WorkerModel> getlistOfWorker(){
+        List <WorkerModel> listOfWorker = new ArrayList<>();
+        listOfWorker.add(new WorkerModel(1,"First",  new Date(91,0,1), Level.TRAINEE,300));
+        listOfWorker.add(new WorkerModel(2,"Second", new Date(92,1,2), Level.JUNIOR,1000));
+        listOfWorker.add(new WorkerModel(3,"Third",  new Date(93,2,3), Level.JUNIOR,1500));
+        listOfWorker.add(new WorkerModel(4,"Four",   new Date(94,3,4), Level.JUNIOR,1800));
+        listOfWorker.add(new WorkerModel(5,"Five",   new Date(95,4,5), Level.MIDDLE,2000));
+        listOfWorker.add(new WorkerModel(6,"Six",    new Date(96,5,6), Level.MIDDLE,2500));
+        listOfWorker.add(new WorkerModel(7,"Seven",  new Date(97,6,7), Level.SENIOR,4000));
+        listOfWorker.add(new WorkerModel(8,"Eight",  new Date(98,7,8), Level.SENIOR,4500));
+        listOfWorker.add(new WorkerModel(9,"Nine",   new Date(99,8,9), Level.SENIOR,5000));
+        listOfWorker.add(new WorkerModel(10,"Ten",   new Date(99,9,10), Level.SENIOR,5500));
+
         return listOfWorker;
     }
 
-    public static List<String> getListOfProjects(){
-        List <String> listOfProjects = new ArrayList<>();
-        listOfProjects.add("101, 1, 2000.01.01,2005.12.01");
-        listOfProjects.add("102, 2, 2001.01.01,2001.02.01");
-        listOfProjects.add("103, 3, 2002.01.01,2002.03.01");
-        listOfProjects.add("104, 4, 2004.01.01,2005.12.01");
-        listOfProjects.add("105, 5, 2005.01.01,2005.03.01");
-        listOfProjects.add("106, 1, 2002.04.01,2005.06.01");
-        listOfProjects.add("107, 2, 2006.08.01,2006.12.01");
-        listOfProjects.add("108, 3, 2008.10.01,2009.10.01");
-        listOfProjects.add("109, 4, 2005.01.01,2005.10.01");
-        listOfProjects.add("110, 5, 2000.01.01,2006.03.01");
+    public static List<ProjectModel> getListOfProjects(){
+        List <ProjectModel> listOfProjects = new ArrayList<>();
+        listOfProjects.add(new ProjectModel(101, 1, new Date(100,0,1), new Date(105,11,1)));
+        listOfProjects.add(new ProjectModel(102, 2, new Date(101,1,1), new Date(101,2,1)));
+        listOfProjects.add(new ProjectModel(103, 3, new Date(102,1,1), new Date(102,3,1)));
+        listOfProjects.add(new ProjectModel(104, 4, new Date(104,1,1), new Date(105,12,1)));
+        listOfProjects.add(new ProjectModel(105, 5, new Date(105,1,1), new Date(105,3,1)));
+        listOfProjects.add(new ProjectModel(106, 1, new Date(102,4,1), new Date(105,6,1)));
+        listOfProjects.add(new ProjectModel(107, 2, new Date(106,8,1), new Date(106,12,1)));
+        listOfProjects.add(new ProjectModel(108, 3, new Date(108,10,1), new Date(109,10,1)));
+        listOfProjects.add(new ProjectModel(109, 4, new Date(105,1,1), new Date(105,10,1)));
+        listOfProjects.add(new ProjectModel(110, 5, new Date(100,1,1), new Date(106,3,1)));
         return listOfProjects;
     }
 
-    public static List <String> getListOfProjectsWorker(){
-        List <String> listOfProjectsWorker = new ArrayList<>();
-        listOfProjectsWorker.add("101, 1");
-        listOfProjectsWorker.add("101, 2");
-        listOfProjectsWorker.add("101, 3");
-        listOfProjectsWorker.add("101, 4");
-        listOfProjectsWorker.add("101, 5");
-        listOfProjectsWorker.add("102, 6");
-        listOfProjectsWorker.add("102, 7");
-        listOfProjectsWorker.add("102, 8");
-        listOfProjectsWorker.add("103, 9");
-        listOfProjectsWorker.add("104, 10");
-        listOfProjectsWorker.add("105, 10");
-        listOfProjectsWorker.add("106, 9");
-        listOfProjectsWorker.add("107, 8");
-        listOfProjectsWorker.add("108, 7");
-        listOfProjectsWorker.add("109, 6");
-        listOfProjectsWorker.add("110, 5");
-        return listOfProjectsWorker;
+    public static HashMap<Integer, Integer> getMapOfProjectsWorker(){
+        HashMap<Integer, Integer>  mapOfProjectsWorker = new HashMap<>();
+        mapOfProjectsWorker.put(101,1);
+        mapOfProjectsWorker.put(101,2);
+        mapOfProjectsWorker.put(101,3);
+        mapOfProjectsWorker.put(101,4);
+        mapOfProjectsWorker.put(101,5);
+        mapOfProjectsWorker.put(102,6);
+        mapOfProjectsWorker.put(102,7);
+        mapOfProjectsWorker.put(102,8);
+        mapOfProjectsWorker.put(103,9);
+        mapOfProjectsWorker.put(104,10);
+        mapOfProjectsWorker.put(105,10);
+        mapOfProjectsWorker.put(106,9);
+        mapOfProjectsWorker.put(107,8);
+        mapOfProjectsWorker.put(108,7);
+        mapOfProjectsWorker.put(109,6);
+        mapOfProjectsWorker.put(110,5);
+        return mapOfProjectsWorker;
     }
-
 }
